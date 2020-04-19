@@ -23,7 +23,7 @@ public class Omnivore extends LifeForm implements CarnivoreEdible {
      * @param spawnCell {@code Cell} the Cell in which this Omnivore spawns on.
      */
     public Omnivore(Cell spawnCell) {
-        super(Color.BLUE, spawnCell, MAX_HP);
+        super(Color.ORANGE, spawnCell, MAX_HP);
     }
 
     @Override
