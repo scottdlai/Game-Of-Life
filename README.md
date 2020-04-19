@@ -1,72 +1,38 @@
-**Scott Lai <br>
-A01158559**
+This is an archive for my Java Assignemnt 03 (Game Of Life) for my COMP 2522
+(Object-Oriented) class at BCIT.
 
-This is a Java Project for Game of Life. It has 3 packages.
+Game of Life (NOT Conway's Game of Life) is a simulation of a world where there
+are *Plant*, *Herbivore*, *Carnivore*, and *Omnivore*.
 
-Below are my explainations of my design decisions.
+# Rules
 
-# Package application
+At the start of each *turn (day)*, an *organism* will lose 1 *hp* unless it *eats* other *organism*, which will restore its *hp* to full. In addition, it will *breed* (if possible), and then *move* to 1 adjacent tile (randomly). An *organism* will **DIE** if it gets eaten by other *orgnaism*, or its *hp* reaches 0. 
 
-## Main
-    Main Class to start the program.
-
-Contains `public static void main(String[] args)` and an instance of `Game`.
-The reason I split `Game` from `Main` is because it allows us to easily abandon
-the current game and start over again without having to restart the program.
-
-## Game
-    Represents a Game of Life
-
-A game has a `World`. This allows in the future, if we want to include more 
-Worlds into our game, we can just easily instantiate more `World` instances to 
-our game without chaning the code too much.
-
-# Package organism
-
-## LifeForm
-    Abstract class to represent a LifeForm, i.e. Plant Eaters and Plants in the 
-    Game of Life.
-
-A super class for all organism in the Game of Life. It contains many useful 
-methods such as `die()`, `moveTo(Cell)` and three abstract methods called 
-`takeTurn()`, `edibleBy(LifeForm)` and `eat(LifeForm)`. This ensures that if we
-want to add a new `LifeForm` into the game, that `LifeForm` must do something at
-the start of a turn, define which other `LifeForm` can eat it and what happens 
-when it `eat()` other `LifeForm` and having access to useful methods and 
-attributes for an easier implementation.
-
-## Herbivore
-    Class to represent a Plant Eater Object in the Game of Life.
-
-Represents a Plant Eater in the Game of Life. It inherits from the `LifeForm` 
-super class. It has other attributes and methods such as `hp`.
+Below are some attributes for the organisms in this simulation.
 
 ## Plant
-    Class to represent a Plant in the Game of Life.
+* Represents as **GREEN** tile
+* Prey: nothing
+* Can *breed* if surrounded by at least 2 other *plants*, and at least 3 empty tiles.
 
-Represents a Plant in the Game of Life. It inherits from the `LifeForm` super 
-class which allows us to group it and `Herbivore` together in `Cell`.
+## Herbivore
+* Represents as **YELLOW** tile
+* Preys: *plants*
+* Can *breed* if surrouned by at least 1 other *herbivore*, at least 2 empty    tiles, and at least 3 *preys*
 
-# Package utility
+## Carnivore
+* Represents as **RED** tile
+* Preys: *herbivores*, and *omnivores*
+* Can *breed* if surrounded by at least 1 other *carnivore*, at least 3 empty tiles, and exactly 2 *preys*
+  
+## Omnivore
+* Represents as **ORANGE** tile
+* Preys: *plant*, *herbivores*, and *carnivores*
+* Can *breed* if surrounded by at least 1 other *omnivore*, at least 3 empty tiles, and exactly 1 *prey*
 
-## RandomGenerator
-    Utility class to generate a sequence of predefined pseudorandom integers.
+# Demo
 
-Helps the LifeForm to randomly choose the Cells to move or spawn on. This class
-allows for an easier implementation of choosing moves in `World` and `Cell`.
+## Square World
+![]([../media/demo-square.gif?raw=true](https://github.com/tuonglai3602/Game-Of-Life/blob/media/demo-square.gif))
 
-# Package world
-
-## Cell
-    Class to represent a Cell of a world in the Game of Life.
-
-Represents a single Cell in the Game of Life. It is responsible for spawning 
-`LifeForm` and other important methods such as actually "killing" a `LifeForm`
-by removing the reference to its occupying `LifeForm`. 
-
-## World
-    Class to represent a World of the Game of Life.
-
-Represents a World in the Game of Life. This class is basically a 2D array of 
-`Cell`. It also has other important and useful utility methods such as 
-`randomCell(List<Cell>)`. It's also responsible for handle mouse click.
+## Hexagonal World
