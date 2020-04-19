@@ -36,3 +36,4 @@ Below are some attributes for the organisms in this simulation.
 ![Demo for Square World](https://github.com/tuonglai3602/Game-Of-Life/blob/media/demo-square.gif)
 
 ## Hexagonal World
+![Demo for Hexeagonal World](https://github.com/tuonglai3602/Game-Of-Life/blob/media/demo-hexagonal.gif)
